@@ -2,10 +2,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.liferay.portal.kernel.model.Organization" %>
 <%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.Locale" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ include file="/init.jsp" %>
-<% SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); %>
-
+<% SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); %>
 <%
     String redirect = ParamUtil.getString(request, "redirect");
     long userId = ParamUtil.getLong(request, "userId");
@@ -17,6 +19,10 @@
             e.printStackTrace();
         }
     }
+
+    String dateString = dateFormat.format(user.getBirthday());
+    LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
 %>
 
 <%= "user id: " + user.getUserId() %>
@@ -27,7 +33,7 @@
 <br />
 <%= "Job title : " + user.getJobTitle() %>
 <br />
-<%= "Birthday : " + dateFormat.format(user.getBirthday()) %>
+<%= "Birthday : " + date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"))) %>
 <br />
 <%= "organizations : "%>
 <br />

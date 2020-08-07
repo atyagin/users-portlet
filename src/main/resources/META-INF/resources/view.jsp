@@ -10,7 +10,7 @@
 		total="<%= userLocalService.getUsersCount() %>"
 >
 	<liferay-ui:search-container-results
-			results="<%= userLocalService.getUsers(0,userLocalService.getUsersCount()) %>"
+			results="<%= userLocalService.getUsers(searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>
 	<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.User"
