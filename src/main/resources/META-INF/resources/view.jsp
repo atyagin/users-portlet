@@ -17,31 +17,21 @@
 			escapedModel="true"
 			modelVar="user"
 	>
-		<liferay-ui:search-container-column-text property="userId" name="id: " />
-		<liferay-ui:search-container-column-text property="fullName" name="Full Name" />
-		<liferay-ui:search-container-column-text property="emailAddress" name="email:" />
-		<liferay-ui:search-container-column-text property="jobTitle" name="job title:" />
-		<liferay-ui:search-container-column-text name="birthday:"  value="<%= dateFormat.format(user.getBirthday()) %>" />
-		<liferay-ui:search-container-column-text name="organizations:">
-			<% List<Organization> organizations = null;
-				try {
-					organizations = user.getOrganizations();
-				} catch (PortalException e) {
-					e.printStackTrace();
-				} %>
-			<% for (Organization organization : organizations) { %>
-			<%=organization.getName() %>
-			<br />
-			<% } %>
+		<liferay-ui:search-container-column-text name="Full name:">
+			<aui:button-row>
+				<portlet:renderURL var="detailPage">
+					<portlet:param name="mvcPath" value="/detail.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user.getUserId()) %>" />
+				</portlet:renderURL>
+
+				<aui:button
+						href="<%= detailPage %>"
+						value='<%= user.getFullName().equals("") ? "Users name is not filled " : user.getFullName() %>'
+				/>
+			</aui:button-row>
 		</liferay-ui:search-container-column-text>
 
-		<liferay-ui:search-container-column-text name="phones:">
-			<% List<Phone> phones = user.getPhones(); %>
-			<% for (Phone phone : phones) { %>
-			<%=phone.getNumber() %>
-			<br/>
-			<% } %>
-		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
