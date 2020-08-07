@@ -1,12 +1,20 @@
 package org.example.users.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Phone;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalService;
 import org.example.users.constants.UsersPortletKeys;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
-import javax.portlet.Portlet;
+import javax.portlet.*;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author ilya
@@ -27,4 +35,16 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class UsersPortlet extends MVCPortlet {
+	@Reference
+	private volatile UserLocalService _userLocalService;
+
+	public UserLocalService getUserLocalService() {
+		return _userLocalService;
+	}
+
+	@Override
+	public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
+		renderRequest.setAttribute("userLocalService", getUserLocalService());
+		super.render(renderRequest, renderResponse);
+	}
 }
