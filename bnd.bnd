@@ -1,0 +1,4 @@
+Bundle-Name: users
+Bundle-SymbolicName: org.example.users
+Bundle-Version: 1.0.0
+Export-Package: org.example.users.constants
