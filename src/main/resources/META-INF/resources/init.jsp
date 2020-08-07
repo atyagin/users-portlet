@@ -16,18 +16,13 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.taglib.search.ResultRow" %>
 
-
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
-
-
-
 
 <%
     PortletURL portletURL = renderResponse.createRenderURL();
     String currentURL = portletURL.toString();
 
-//get service bean
     UserLocalService userLocalService = (UserLocalService)request.getAttribute("userLocalService");
 %>

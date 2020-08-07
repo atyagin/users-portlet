@@ -1,10 +1,4 @@
-<%@ page import="com.liferay.portal.kernel.model.Phone" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.liferay.portal.kernel.model.Organization" %>
-<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ include file="/init.jsp" %>
-<% SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); %>
 
 <liferay-ui:search-container
 		total="<%= userLocalService.getUsersCount() %>"
