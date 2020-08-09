@@ -1,6 +1,7 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-ui:search-container
+		emptyResultsMessage="Users not found"
 		total="<%= userLocalService.getUsersCount() %>"
 >
 	<liferay-ui:search-container-results
